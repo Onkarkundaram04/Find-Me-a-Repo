@@ -1,0 +1,33 @@
+/* ==========================================================================
+   components/skeleton.css
+   Loading placeholders. Each page renders skeletons before the first fetch
+   resolves, then swaps in real cards — no spinner, no layout jump.
+   ========================================================================== */
+
+.skeleton {
+  border-radius: var(--r-lg);
+  background: linear-gradient(90deg, var(--surface-alt) 25%, var(--skeleton-hi) 37%, var(--surface-alt) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+/* Card-shaped placeholder, same height as a real .project-card */
+.skeleton--card {
+  height: 200px;
+  border: 1px solid var(--border);
+}
+
+/* One table row, used by the admin tables */
+.skeleton--row {
+  height: 52px;
+  border-radius: var(--r);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}

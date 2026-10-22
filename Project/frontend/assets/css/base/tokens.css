@@ -1,0 +1,179 @@
+/* ==========================================================================
+   base/tokens.css
+   The only place colours, type, spacing, radius and shadow are declared.
+   Every other file reads these variables — no literal hex values anywhere else.
+   Source: DESIGN.md (Precision Minimal)
+
+   Two palettes, one set of names:
+     default          -> light
+     [data-theme=dark] -> dark
+
+   Nothing outside this file knows which one is active. js/core/theme.js sets
+   data-theme on <html> before the first paint.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ---- Surfaces ---- */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-alt: #f1f5f9;
+  --surface-sunken: #eff4ff;
+
+  /* ---- Lines ---- */
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --ring: rgba(79, 70, 229, 0.12);
+
+  /* ---- Text ---- */
+  --text: #0f172a;
+  --text-2: #334155;
+  --muted: #64748b;
+  --placeholder: #94a3b8;
+
+  /* ---- Primary (indigo) ---- */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-active: #3730a3;
+  --primary-soft: #eef2ff;
+  --primary-soft-border: #c7d2fe;
+
+  /* ---- Status: open / accepted ---- */
+  --ok-text: #047857;
+  --ok-bg: #ecfdf5;
+  --ok-border: #a7f3d0;
+
+  /* ---- Status: pending ---- */
+  --warn-text: #b45309;
+  --warn-bg: #fffbeb;
+  --warn-border: #fde68a;
+
+  /* ---- Status: rejected / danger ---- */
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --danger-text: #b91c1c;
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+
+  /* ---- Status: closed / neutral ---- */
+  --neutral-text: #475569;
+  --neutral-bg: #f1f5f9;
+  --neutral-border: #cbd5e1;
+
+  /* ---- Cross-cutting colours that used to be hard-coded ---- */
+  --on-primary: #ffffff;              /* text on an indigo/danger fill */
+  --backdrop: rgba(15, 23, 42, 0.4);  /* behind a modal */
+  --skeleton-hi: #e9eef6;             /* shimmer highlight */
+  --ring-danger: rgba(239, 68, 68, 0.12);
+  --grid-line: rgba(226, 232, 240, 0.6);
+
+  /* ---- Type ---- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+
+  /* ---- Space (8px cadence, 4px micro-step) ---- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+
+  /* ---- Radius ---- */
+  --r-sm: 4px;
+  --r: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-full: 9999px;
+
+  /* ---- Shadow: hairline + one soft offset. Never a glow. ---- */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+
+  /* ---- Layout ---- */
+  --container: 1240px;
+  --nav-h: 64px;
+}
+
+
+/* ==========================================================================
+   DARK THEME
+   Same variable names, different values. Slate surfaces, a slightly brighter
+   indigo (the light one is too dark on a dark background), and tinted status
+   chips instead of pastel ones.
+   ========================================================================== */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* ---- Surfaces ---- */
+  --bg: #0b1220;
+  --surface: #111a2b;
+  --surface-alt: #17233a;
+  --surface-sunken: #16203a;
+
+  /* ---- Lines ---- */
+  --border: #22304a;
+  --border-strong: #33425f;
+  --ring: rgba(129, 140, 248, 0.22);
+
+  /* ---- Text ---- */
+  --text: #e6edf7;
+  --text-2: #b9c6da;
+  --muted: #8fa0b8;
+  --placeholder: #6b7c96;
+
+  /* ---- Primary (indigo, lifted for contrast) ---- */
+  --primary: #6366f1;
+  --primary-hover: #7c7ff5;
+  --primary-active: #4f46e5;
+  --primary-soft: #1b2444;
+  --primary-soft-border: #33406e;
+
+  /* ---- Status: open / accepted ---- */
+  --ok-text: #34d399;
+  --ok-bg: #0d2a22;
+  --ok-border: #1d5145;
+
+  /* ---- Status: pending ---- */
+  --warn-text: #fbbf24;
+  --warn-bg: #2c2109;
+  --warn-border: #5b4415;
+
+  /* ---- Status: rejected / danger ---- */
+  --danger: #f87171;
+  --danger-hover: #ef4444;
+  --danger-text: #fca5a5;
+  --danger-bg: #2c1416;
+  --danger-border: #5b2025;
+
+  /* ---- Status: closed / neutral ---- */
+  --neutral-text: #cbd5e1;
+  --neutral-bg: #1b2436;
+  --neutral-border: #33425f;
+
+  /* ---- Cross-cutting ---- */
+  --on-primary: #ffffff;
+  --backdrop: rgba(3, 7, 18, 0.65);
+  --skeleton-hi: #1e2c46;
+  --ring-danger: rgba(248, 113, 113, 0.2);
+  --grid-line: rgba(51, 66, 95, 0.5);
+
+  /* Shadows need to be deeper to read against a dark surface */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.45), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}

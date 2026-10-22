@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Classic script on purpose: sets data-theme before the first paint -->
+  <script src="assets/js/core/theme.js"></script>
+  <title>Sign in · Find Me a Repo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/coding_cat.png">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main class="auth-wrap">
+    <div class="auth-card">
+
+      <div class="eyebrow">// Access</div>
+      <h1>Sign in</h1>
+      <p class="auth-card__lead">Pick up where you left off.</p>
+
+      <form id="login-form" class="stack" novalidate>
+
+        <div class="form-error" id="form-error" role="alert" hidden></div>
+
+        <label class="field">
+          <span class="field__label">Email <span class="req">*</span></span>
+          <input class="input" id="email" name="email" type="email"
+                 autocomplete="email" placeholder="you@mail.com" required
+                 aria-describedby="email-error">
+          <span class="field__error" id="email-error"></span>
+        </label>
+
+        <div class="field">
+          <label class="field__label" for="password">Password <span class="req">*</span></label>
+
+          <div class="input-group">
+            <input class="input" id="password" name="password" type="password"
+                   autocomplete="current-password" placeholder="••••••••" required
+                   aria-describedby="password-error">
+
+            <!-- The eye icon is added by pieces.js; a plain field still works
+                 without JS, so the button stays hidden until it is wired. -->
+            <button class="input-group__action" type="button" hidden
+                    data-password-toggle="password" aria-controls="password"
+                    aria-label="Show password"></button>
+          </div>
+
+          <span class="field__error" id="password-error"></span>
+        </div>
+
+        <button class="btn btn--primary btn--lg btn--full" id="submit" type="submit">
+          Sign in
+        </button>
+
+      </form>
+
+      <div class="auth-card__foot">
+        No account yet? <a href="register.html">Create one</a>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script type="module" src="assets/js/pages/auth.js"></script>
+</body>
+</html>

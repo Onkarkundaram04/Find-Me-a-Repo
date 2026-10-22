@@ -1,0 +1,99 @@
+/* ==========================================================================
+   components/badges.css
+   Two things that look similar but mean different things:
+     .badge  -> a status pill (OPEN / CLOSED / PENDING / ACCEPTED / REJECTED)
+     .chip   -> a piece of metadata (a tech tag) or a filter button
+   Colours come from the status triads in tokens.css.
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding-inline: var(--s-2);
+  border: 1px solid;
+  border-radius: var(--r-full);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge--open,
+.badge--accepted {
+  color: var(--ok-text);
+  background: var(--ok-bg);
+  border-color: var(--ok-border);
+}
+
+.badge--pending {
+  color: var(--warn-text);
+  background: var(--warn-bg);
+  border-color: var(--warn-border);
+}
+
+.badge--rejected {
+  color: var(--danger-text);
+  background: var(--danger-bg);
+  border-color: var(--danger-border);
+}
+
+.badge--closed {
+  color: var(--neutral-text);
+  background: var(--neutral-bg);
+  border-color: var(--neutral-border);
+}
+
+/* Role badge in the admin user table */
+.badge--admin {
+  color: var(--primary-active);
+  background: var(--primary-soft);
+  border-color: var(--primary-soft-border);
+}
+
+.badge--user {
+  color: var(--neutral-text);
+  background: var(--neutral-bg);
+  border-color: var(--neutral-border);
+}
+
+
+/* ---- Tech tag ---- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding-inline: var(--s-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface-alt);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+/* "+3" overflow indicator when a card has too many tags */
+.chip--more {
+  background: transparent;
+  border-style: dashed;
+  color: var(--muted);
+}
+
+
+/* A settled, non-actionable state — e.g. a decided application */
+.badge--more {
+  color: var(--muted);
+  background: var(--surface-alt);
+  border-color: var(--border);
+}

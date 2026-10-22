@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Find Me a Repo">
+  <!--
+    The tab icon: the coding cat on a white tile.
+    The artwork is near-black, so without the plate it disappears in a dark
+    browser tab and only the purple laptop survives. The plate is what makes
+    the mark readable at 16px on any background.
+
+    Artwork is drawn on a 1254 grid; the group below scales that grid into a
+    26x26 box at (3,3), leaving the 3 unit safe margin.
+  -->
+  <rect width="32" height="32" rx="7" fill="#ffffff"/>
+
+  <g transform="translate(-1.473 -2.927) scale(0.027957)">
+    <!-- Cat: head, ears and body -->
+    <path fill="#0f1720" d="
+      M 330 385
+      C 325 330, 335 270, 360 232
+      C 372 214, 395 212, 420 222
+      C 455 237, 490 262, 516 284
+      C 560 274, 600 271, 625 271
+      C 650 271, 690 274, 740 284
+      C 770 262, 810 237, 845 222
+      C 870 212, 890 214, 902 232
+      C 925 270, 930 330, 923 385
+      C 965 435, 985 495, 985 550
+      C 985 640, 940 710, 870 750
+      C 810 780, 760 792, 700 800
+      L 700 1085
+      L 600 1095
+      C 540 1098, 480 1090, 450 1073
+      C 405 1060, 398 1020, 398 982
+      C 398 900, 420 830, 465 788
+      C 340 750, 267 650, 267 550
+      C 267 495, 285 435, 330 385 Z"/>
+
+    <!-- Tail -->
+    <path fill="#0f1720" d="
+      M 410 985
+      C 350 978, 320 950, 305 895
+      C 292 835, 255 772, 205 772
+      C 175 772, 160 800, 168 820
+      C 175 838, 195 842, 212 858
+      C 232 878, 232 915, 245 965
+      C 265 1030, 340 1075, 450 1073
+      L 500 1000 Z"/>
+
+    <!-- Face -->
+    <path fill="#ffffff" d="
+      M 385 585
+      C 385 500, 450 436, 525 436
+      C 565 436, 595 450, 610 458
+      C 620 463, 632 463, 642 458
+      C 657 450, 687 436, 730 436
+      C 805 436, 868 500, 868 580
+      C 868 670, 770 740, 625 740
+      C 480 740, 385 670, 385 585 Z"/>
+
+    <!-- Eyes -->
+    <rect x="467" y="543" width="70" height="110" rx="35" fill="#0f1720"/>
+    <rect x="717" y="543" width="70" height="110" rx="35" fill="#0f1720"/>
+
+    <!-- Laptop -->
+    <path fill="#635bff" d="
+      M 710 772
+      L 1035 772
+      Q 1090 772, 1087 825
+      L 1057 1060
+      Q 1050 1112, 1000 1112
+      L 685 1112
+      Q 630 1112, 633 1060
+      L 663 825
+      Q 668 772, 710 772 Z"/>
+
+    <!-- Code brackets -->
+    <g fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="828,882 754,945 828,1010"/>
+      <polyline points="907,882 981,945 907,1010"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,134 @@
+/* ==========================================================================
+   pages/projects.css
+   The browse screen's filter bar: search, status select, filter button, and the
+   row of removable pills underneath. The popover panel itself is a component —
+   see components/popover.css.
+   ========================================================================== */
+
+/* Search keeps the space, the select and the button keep their width */
+.toolbar__select {
+  width: auto;
+  flex: 0 0 auto;
+  min-width: 160px;
+}
+
+#count-chip {
+  background: var(--surface);
+  color: var(--muted);
+  height: 26px;
+  padding-inline: var(--s-3);
+  white-space: nowrap;
+}
+
+
+/* ---- Filter button ---- */
+
+.filters-btn {
+  gap: var(--s-2);
+}
+
+.filters-btn svg {
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+}
+
+/* Active filters: indigo outline, so the button announces itself */
+.filters-btn.has-filters {
+  border-color: var(--primary-soft-border);
+  color: var(--primary);
+}
+
+.filters-btn.has-filters svg {
+  color: var(--primary);
+}
+
+.filters-btn__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 5px;
+  border-radius: var(--r-full);
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.filters-btn__count[hidden] {
+  display: none;
+}
+
+
+/* ---- Applied filter pills ---- */
+
+.applied-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  margin-bottom: var(--s-5);
+}
+
+.applied-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding-inline: 10px;
+  border: 1px solid var(--primary-soft-border);
+  border-radius: var(--r-full);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.applied-pill:hover {
+  border-color: var(--primary);
+}
+
+.applied-pill__x {
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.55;
+}
+
+.applied-pill:hover .applied-pill__x {
+  opacity: 1;
+}
+
+.applied-clear {
+  margin-left: var(--s-1);
+}
+
+
+/* Keep the grid from collapsing to nothing while skeletons are swapped out */
+#grid {
+  min-height: 220px;
+  align-content: start;
+}
+
+
+/* ---- Phone: the bar stacks, full width controls ---- */
+
+@media (max-width: 640px) {
+
+  .toolbar__select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filters-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #count-chip {
+    order: -1;
+  }
+}

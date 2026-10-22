@@ -1,0 +1,49 @@
+/* ==========================================================================
+   main.css — the ONLY stylesheet a page links.
+
+     <link rel="stylesheet" href="assets/css/main.css">
+
+   This file holds no rules of its own, only imports, in dependency order:
+   tokens first (everything reads the variables), then reset, then layout,
+   then components, then page-specific files, then utilities last so they win.
+   ========================================================================== */
+
+/* ---- 1. Base: variables, reset, type ---- */
+@import url("base/tokens.css");
+@import url("base/reset.css");
+@import url("base/typography.css");
+
+/* ---- 2. Layout: page skeleton, nav, footer ---- */
+@import url("layout/container.css");
+@import url("layout/navbar.css");
+@import url("layout/footer.css");
+
+/* ---- 3. Components ---- */
+@import url("components/buttons.css");
+@import url("components/forms.css");
+@import url("components/badges.css");
+@import url("components/avatar.css");
+@import url("components/cards.css");
+@import url("components/tables.css");
+@import url("components/toast.css");
+@import url("components/modal.css");
+@import url("components/empty.css");
+@import url("components/pagination.css");
+@import url("components/skeleton.css");
+@import url("components/tabs.css");
+@import url("components/popover.css");
+
+/* ---- 4. Pages ---- */
+@import url("pages/landing.css");
+@import url("pages/projects.css");
+@import url("pages/detail.css");
+@import url("pages/auth.css");
+@import url("pages/dashboard.css");
+@import url("pages/project-form.css");
+@import url("pages/applications.css");
+@import url("pages/profile.css");
+@import url("pages/admin.css");
+
+/* ---- 5. Utilities last, so they can override anything above ---- */
+@import url("utils/utilities.css");
+@import url("utils/responsive.css");

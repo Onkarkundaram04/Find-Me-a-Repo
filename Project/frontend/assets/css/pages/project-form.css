@@ -1,0 +1,28 @@
+/* ==========================================================================
+   pages/project-form.css
+   Layout for the create/edit form. Fields, inputs and the tag input all come
+   from components/forms.css — this file only positions things.
+   ========================================================================== */
+
+.form-page {
+  max-width: 780px;
+  padding-bottom: var(--s-7);
+}
+
+/* The card holds a form, so it needs a little more air than a plain card */
+.form-page .card {
+  margin-top: var(--s-2);
+}
+
+/* Counters sit under the field, right-aligned against the hint.
+   Scoped to this page: .field__hint belongs to components/forms.css. */
+.form-page .field__hint {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+
+/* ---- Actions row ----
+   .form-actions itself lives in components/forms.css, because Settings uses it
+   too. Only the page-level spacing belongs here. */
+

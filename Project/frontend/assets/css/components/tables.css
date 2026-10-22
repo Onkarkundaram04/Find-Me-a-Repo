@@ -1,0 +1,83 @@
+/* ==========================================================================
+   components/tables.css
+   Wrapper provides the border + horizontal scroll, the table itself stays flat.
+   ========================================================================== */
+
+.table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+.table {
+  font-size: var(--text-base);
+  min-width: 640px;
+}
+
+.table th {
+  padding: var(--s-3) var(--s-4);
+  background: var(--surface-alt);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--bg);
+}
+
+/* Numbers, ids and dates in mono */
+.table .num {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-2);
+}
+
+/* Right-aligned action column */
+.table .actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.table .actions > * {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.table .actions > * + * {
+  margin-left: var(--s-2);
+}
+
+/* Empty row shown when a filter matches nothing */
+.table__empty td {
+  padding: var(--s-6);
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Sortable header affordance (used by the admin tables) */
+.table th.is-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.table th.is-sortable:hover {
+  color: var(--text);
+}

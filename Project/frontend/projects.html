@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Classic script on purpose: sets data-theme before the first paint -->
+  <script src="assets/js/core/theme.js"></script>
+  <title>Projects · Find Me a Repo</title>
+  <meta name="description" content="Browse engineering projects and apply to collaborate.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/coding_cat.png">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <!-- navbar.js replaces this with the real <header class="navbar"> -->
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container">
+
+      <header class="page-head">
+        <div class="page-head__text">
+          <div class="eyebrow">// Discovery</div>
+          <h1>Explore Engineering Projects</h1>
+          <p>Find a project worth joining, or post one of your own.</p>
+        </div>
+
+        <div class="page-head__actions">
+          <span class="chip" id="count-chip" title="Projects matching the current filters">—</span>
+          <a class="btn btn--primary" id="submit-btn" href="project-form.html">Submit Project</a>
+        </div>
+      </header>
+
+      <div class="toolbar projects-toolbar">
+        <div class="input-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <label class="sr-only" for="search">Search by project title, developer name or project ID</label>
+          <input class="input" id="search" type="search"
+                 placeholder="Search by title, developer name or project ID…"
+                 autocomplete="off" spellcheck="false">
+          <!-- Filled by projects.js: ⌘K on Apple platforms, Ctrl K elsewhere -->
+          <span class="input-icon__kbd" id="search-kbd" aria-hidden="true"></span>
+        </div>
+
+        <!-- Options come from GET /api/meta, never from a list in this file -->
+        <label class="sr-only" for="status-filter">Filter by status</label>
+        <select class="select toolbar__select" id="status-filter"></select>
+
+        <div class="popover" id="filters-root">
+          <button class="btn btn--secondary filters-btn" type="button" id="filters-btn"
+                  aria-expanded="false" aria-controls="filters-panel">
+            <span class="filters-btn__text">Filters</span>
+            <span class="filters-btn__count" id="filters-count" hidden></span>
+          </button>
+
+          <div class="popover__panel" id="filters-panel" role="group"
+               aria-label="Filter by technology" hidden>
+            <div class="popover__head">
+              <span class="popover__title" id="tech-title">Technology</span>
+              <button class="link-btn" type="button" id="clear-tech">Clear</button>
+            </div>
+
+            <div class="filter-list" id="tech-list" aria-labelledby="tech-title"></div>
+
+            <p class="xs muted mt-3" id="tech-empty" hidden>
+              No technologies in use yet.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Removable pills for every active filter, so none of them is invisible -->
+      <div class="applied-filters" id="applied-filters" hidden></div>
+
+      <!-- Projects land here; skeletons while loading, .empty when nothing matches -->
+      <div class="grid grid--cards" id="grid" aria-live="polite"></div>
+
+      <div id="pagination"></div>
+
+    </div>
+  </main>
+
+  <!-- navbar.js replaces this with the real <footer> -->
+  <div id="footer"></div>
+
+  <script type="module" src="assets/js/pages/projects.js"></script>
+</body>
+</html>

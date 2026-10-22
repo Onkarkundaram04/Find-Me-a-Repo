@@ -1,0 +1,100 @@
+/* ==========================================================================
+   utils/utilities.css
+   Single-purpose helpers. If a class here needs more than one property in two
+   different places, it is not a utility — move it to components/.
+   ========================================================================== */
+
+/* ---- Text ---- */
+.muted { color: var(--muted); }
+.text-2 { color: var(--text-2); }
+.small { font-size: var(--text-sm); }
+.xs { font-size: var(--text-xs); }
+.mono-text { font-family: var(--font-mono); }
+.strong { font-weight: 600; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.nowrap { white-space: nowrap; }
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Two-line clamp, used by card descriptions */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- Spacing ---- */
+.mt-1 { margin-top: var(--s-1); }
+.mt-2 { margin-top: var(--s-2); }
+.mt-3 { margin-top: var(--s-3); }
+.mt-4 { margin-top: var(--s-4); }
+.mt-5 { margin-top: var(--s-5); }
+.mt-6 { margin-top: var(--s-6); }
+
+.mb-2 { margin-bottom: var(--s-2); }
+.mb-3 { margin-bottom: var(--s-3); }
+.mb-4 { margin-bottom: var(--s-4); }
+.mb-5 { margin-bottom: var(--s-5); }
+
+/* ---- Visibility ---- */
+.hidden { display: none !important; }
+
+/* Visible to screen readers, invisible on screen */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- 2px progress bar while a page fetches (ui/toast.js drives it) ---- */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--primary);
+  z-index: 200;
+  transition: width 0.2s ease, opacity 0.2s ease;
+}
+
+.progress.is-done {
+  width: 100%;
+  opacity: 0;
+}
+
+/* ---- Divider ---- */
+.divider {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin-block: var(--s-4);
+}
+
+/* ---- In-flight request states ---- */
+
+/* A list that is re-fetching keeps its rows and dims them, so the page never
+   jumps to skeletons on a page change or a filter click. */
+.is-loading {
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+/* Same idea for a <select> or other non-button control */
+.is-busy {
+  opacity: 0.6;
+  cursor: progress;
+}

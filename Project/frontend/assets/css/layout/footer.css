@@ -1,0 +1,22 @@
+/* ==========================================================================
+   layout/footer.css
+   Thin mono footer, pushed to the bottom by the flex body in reset.css.
+   ========================================================================== */
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  margin-top: var(--s-7);
+  padding-block: var(--s-5);
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted);
+}

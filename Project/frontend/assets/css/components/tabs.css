@@ -1,0 +1,87 @@
+/* ==========================================================================
+   components/tabs.css
+   Underline tabs sitting on a divider. Shared by dashboard and admin.
+   JS toggles .is-active on the button and [hidden] on the panels.
+   ========================================================================== */
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--s-5);
+  /* Scrolls sideways on a narrow screen instead of wrapping */
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+/* The scrollbar gutter showed up as a grey sliver next to the last tab */
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 10px var(--s-3);
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: var(--text-base);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab.is-active {
+  color: var(--primary);
+}
+
+/* 2px bar sits on the divider */
+.tab.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--s-2);
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--primary);
+}
+
+/* Small counter inside a tab, e.g. "My projects (3)".
+   Stays hidden until the real number has been fetched. */
+.tab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 18px;
+  padding-inline: 5px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.tab__count[hidden] {
+  display: none;
+}
+
+.tab.is-active .tab__count {
+  border-color: var(--primary-soft-border);
+  background: var(--primary-soft);
+  color: var(--primary-active);
+}
+
+/* Panels */
+.tab-panel[hidden] {
+  display: none;
+}

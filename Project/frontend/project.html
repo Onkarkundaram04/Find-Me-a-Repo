@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Classic script on purpose: sets data-theme before the first paint -->
+  <script src="assets/js/core/theme.js"></script>
+  <title>Project · Find Me a Repo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/coding_cat.png">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container">
+
+      <a class="back-link mono-text xs muted" href="projects.html">← All projects</a>
+
+      <!-- detail.js fills this: header, description, sidebar, apply panel -->
+      <div id="detail" aria-live="polite">
+        <div class="skeleton skeleton--card detail-skeleton"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script type="module" src="assets/js/pages/detail.js"></script>
+</body>
+</html>

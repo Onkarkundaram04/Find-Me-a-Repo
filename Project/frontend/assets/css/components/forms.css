@@ -1,0 +1,424 @@
+/* ==========================================================================
+   components/forms.css
+   Field wrapper, inputs, textarea, select, search input with icon, checkbox,
+   the auth card layout, and the tech-stack input used by the project form.
+   ========================================================================== */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.field__label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+/* Required marker */
+.field__label .req {
+  color: var(--danger);
+}
+
+.field__hint {
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+/* Reserved height so showing an error never shifts the form */
+.field__error {
+  font-size: var(--text-xs);
+  color: var(--danger-text);
+  min-height: 16px;
+}
+
+.field__error:empty {
+  display: block;
+}
+
+
+/* ---- Controls ---- */
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: var(--text-base);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.select {
+  appearance: none;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--placeholder);
+}
+
+.input:hover,
+.textarea:hover,
+.select:hover {
+  border-color: var(--border-strong);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.input.is-invalid,
+.textarea.is-invalid {
+  border-color: var(--danger);
+}
+
+.input.is-invalid:focus,
+.textarea.is-invalid:focus {
+  box-shadow: 0 0 0 3px var(--ring-danger);
+}
+
+
+/* ---- Input with a trailing action (password reveal) ---- */
+
+.input-group {
+  position: relative;
+  display: flex;
+}
+
+/* Leave room for the button so long passwords never run under it */
+.input-group .input {
+  padding-right: 44px;
+}
+
+.input-group__action {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--muted);
+  transition: color 0.12s ease, background-color 0.12s ease;
+}
+
+/* The button ships hidden and is revealed by JS — display:grid would otherwise
+   win over the browser's [hidden] rule */
+.input-group__action[hidden] {
+  display: none;
+}
+
+.input-group__action:hover {
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.input-group__action:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+/* Textarea that auto-grows is handled in JS; this only caps it */
+.textarea--short {
+  min-height: 88px;
+}
+
+
+/* ---- Search input with a leading icon ---- */
+
+.input-icon {
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+}
+
+.input-icon svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.input-icon .input {
+  padding-left: 38px;
+  /* Room for the two keycaps on the right */
+  padding-right: 92px;
+  height: 40px;
+}
+
+/* ---- Keyboard shortcut hint ----
+   Two separate keycaps, built by projects.js so the label matches the platform
+   (⌘ K on Apple, Ctrl K everywhere else). */
+
+.input-icon__kbd {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+/* Hidden while the field has text, and while it is focused — the hint is only
+   useful before you start typing. The native search cancel button is hidden
+   separately, because it would land underneath the caps. */
+.input-icon .input:not(:placeholder-shown) ~ .input-icon__kbd,
+.input-icon .input:focus ~ .input-icon__kbd {
+  opacity: 0;
+}
+
+.input-icon .input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* On a phone the hint is noise — it points at a key you do not have */
+@media (max-width: 640px) {
+
+  .input-icon__kbd {
+    display: none;
+  }
+
+  .input-icon .input {
+    padding-right: var(--s-4);
+  }
+}
+
+
+/* ---- Inline filter select ----
+   Sits in a toolbar next to its label, so it keeps its own width instead of
+   stretching like a form field. */
+
+.select--filter {
+  width: auto;
+  min-width: 150px;
+  height: 32px;
+  padding-block: 0;
+  font-size: var(--text-sm);
+}
+
+
+/* ---- Checkbox ---- */
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--text-base);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+
+/* ---- Two fields side by side (name / email) ---- */
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--s-4);
+}
+
+
+/* ---- Auth card (login / register) ---- */
+
+.auth-wrap {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  /* The card is 100% wide up to 420px, so the page needs its own gutters or it
+     touches both screen edges on a phone */
+  padding: var(--s-7) var(--s-4);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+  padding: var(--s-6);
+}
+
+.auth-card h1 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.auth-card__lead {
+  margin-top: var(--s-2);
+  margin-bottom: var(--s-5);
+  color: var(--muted);
+}
+
+.auth-card__foot {
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+/* Form-level error banner (wrong email or password) */
+.form-error {
+  padding: var(--s-3);
+  border: 1px solid var(--danger-border);
+  border-radius: var(--r);
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  font-size: var(--text-sm);
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
+
+/* ---- Actions row at the bottom of a form (also used on Settings) ---- */
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border);
+}
+
+.form-actions .btn {
+  min-width: 130px;
+}
+
+@media (max-width: 640px) {
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* ---- Tech-stack chip input (project form) ---- */
+
+.tag-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  cursor: text;
+}
+
+.tag-input:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.tag-input__field {
+  flex: 1;
+  min-width: 120px;
+  border: 0;
+  outline: none;
+  padding: 4px;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text);
+}
+
+.tag-input__field::placeholder {
+  color: var(--placeholder);
+  font-family: var(--font-sans);
+}
+
+/* Each added tag, with its own remove button */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding-inline: var(--s-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface-alt);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.tag button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.tag button:hover {
+  color: var(--danger-text);
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Classic script on purpose: sets data-theme before the first paint -->
+  <script src="assets/js/core/theme.js"></script>
+  <title>Find Me a Repo · Find a project, find a collaborator</title>
+  <meta name="description" content="Post a repository. Meet the people who want to work on it.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/coding_cat.png">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main>
+
+    <!-- ---- Hero ---- -->
+    <section class="hero">
+      <div class="container hero__inner">
+
+        <div>
+          <div class="eyebrow">// Build together</div>
+
+          <h1 class="hero__title">
+            Find a project.<br>
+            Find a collaborator.
+          </h1>
+
+          <p class="hero__lead">
+            Post a repository. Meet the people who want to work on it.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" id="hero-primary" href="projects.html">
+              Browse projects
+            </a>
+            <a class="btn btn--secondary btn--lg" id="hero-secondary" href="project-form.html">
+              Post a project
+            </a>
+          </div>
+        </div>
+
+        <!-- Numbers come from GET /api/meta, never written into this file -->
+        <aside class="hero__stats" id="hero-stats" aria-live="polite">
+          <div class="skeleton hero-stat--skeleton"></div>
+          <div class="skeleton hero-stat--skeleton"></div>
+          <div class="skeleton hero-stat--skeleton"></div>
+          <div class="skeleton hero-stat--skeleton"></div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ---- How it works ---- -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="eyebrow">// How it works</div>
+
+        <div class="steps">
+          <article class="step">
+            <span class="step__num">01</span>
+            <h2 class="step__title">Post it</h2>
+            <p class="step__text">Title, stack, GitHub URL.</p>
+          </article>
+
+          <article class="step">
+            <span class="step__num">02</span>
+            <h2 class="step__title">Read applicants</h2>
+            <p class="step__text">A note and a profile each.</p>
+          </article>
+
+          <article class="step">
+            <span class="step__num">03</span>
+            <h2 class="step__title">Pick one</h2>
+            <p class="step__text">Accept, and start building.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---- Latest projects ---- -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">Latest projects</h2>
+          <a class="btn btn--ghost btn--sm" href="projects.html">See all →</a>
+        </div>
+
+        <!-- Same grid as the projects page: fills a row on desktop, stacks on phones -->
+        <div class="grid grid--cards" id="latest" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ---- By stack ---- -->
+    <section class="section section--tight">
+      <div class="container">
+        <h2 class="section__title">By stack</h2>
+
+        <!-- Built from the tags people actually use, with their counts -->
+        <div class="stack-links" id="top-stacks" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ---- Closing call to action ---- -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <h2 class="cta-band__title">Got something to build?</h2>
+          <a class="btn btn--primary btn--lg" href="project-form.html">Post a project</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <script type="module" src="assets/js/pages/landing.js"></script>
+</body>
+</html>

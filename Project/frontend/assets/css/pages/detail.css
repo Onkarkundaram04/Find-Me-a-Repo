@@ -1,0 +1,151 @@
+/* ==========================================================================
+   pages/detail.css
+   Project detail: title row, metadata line, long description, and the sidebar
+   action panel. The back link above the title lives in layout/container.css.
+   ========================================================================== */
+
+/* Skeleton placeholder while the project loads — kept here so the HTML file
+   carries no inline styles. */
+.detail-skeleton {
+  height: 320px;
+}
+
+.detail {
+  margin-top: var(--s-4);
+}
+
+/* ---- Header ---- */
+
+.detail__head {
+  margin-bottom: var(--s-5);
+}
+
+.detail__head-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.detail__title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.detail__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  margin-top: var(--s-3);
+}
+
+.detail__meta .dot {
+  color: var(--border-strong);
+}
+
+.detail__github {
+  margin-left: auto;
+  color: var(--primary);
+}
+
+/* ---- Body ---- */
+
+.detail__body {
+  padding: var(--s-6);
+}
+
+/* Long text keeps its line breaks but never overflows the card */
+.detail__desc {
+  margin-top: var(--s-2);
+  color: var(--text-2);
+  font-size: var(--text-md);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.detail__stack {
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border);
+}
+
+.detail__stack .chips {
+  margin-top: var(--s-2);
+}
+
+/* ---- Sidebar ---- */
+
+.detail__side {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--s-4));
+}
+
+.side__count {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+}
+
+.side__count-value {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.side__count-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Small explanatory line above a panel action */
+.panel-note {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+/* The project id. Clicking copies it, because the search box accepts an id. */
+.detail__id {
+  padding: 2px 7px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.detail__id:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+/* The apply form's textarea sits closer to its label than a full form */
+.detail__side .field__hint {
+  margin-top: 2px;
+}
+
+/* ---- Phone: sidebar stops sticking and drops below the content ---- */
+
+@media (max-width: 900px) {
+  .detail__side {
+    position: static;
+  }
+
+  .detail__body {
+    padding: var(--s-5);
+  }
+
+  .detail__title {
+    font-size: var(--text-xl);
+  }
+}

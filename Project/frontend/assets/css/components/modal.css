@@ -1,0 +1,79 @@
+/* ==========================================================================
+   components/modal.css
+   Flat 40% backdrop (no blur, per the design rules). ui/dom.js creates the
+   overlay, traps focus and adds .modal-open to <body> while it is up.
+   ========================================================================== */
+
+/* The page behind must not scroll while a dialog is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: var(--s-5);
+  background: var(--backdrop);
+  overflow-y: auto;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal__panel {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--s-6);
+}
+
+.modal__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.modal__text {
+  margin-top: var(--s-2);
+  color: var(--muted);
+  font-size: var(--text-base);
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+}
+
+/* Wider variant, used by the user-details modal */
+.modal__panel--lg {
+  max-width: 560px;
+  /* Can get taller than the viewport, so it scrolls inside the backdrop */
+  max-height: min(80vh, 720px);
+  overflow-y: auto;
+}
+
+/* Header of a details modal: avatar + name/email, badges pushed right */
+.modal__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.modal__head-text {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .modal__panel {
+    padding: var(--s-5);
+  }
+}

@@ -1,0 +1,93 @@
+/* ==========================================================================
+   pages/dashboard.css
+   Application rows only — the project grid reuses .project-card, and the tabs
+   come from components/tabs.css.
+   ========================================================================== */
+
+/* An application: content on the left, action on the right */
+.app-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-5);
+  padding: var(--s-4) var(--s-5);
+}
+
+.app-row__main {
+  min-width: 0;
+}
+
+.app-row__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+
+.app-row__title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.app-row__title:hover {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* The applicant's note: two lines, then ellipsis */
+.app-row__note {
+  margin-top: var(--s-2);
+  color: var(--muted);
+  font-size: var(--text-base);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.app-row__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.app-row__meta .dot {
+  color: var(--border-strong);
+}
+
+.app-row__actions {
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+/* Keep the grid from collapsing while skeletons swap out */
+#projects-list {
+  min-height: 200px;
+  align-content: start;
+}
+
+#apps-list {
+  min-height: 140px;
+}
+
+
+/* ---- Phone: action drops under the content ---- */
+
+@media (max-width: 640px) {
+
+  .app-row {
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .app-row__actions {
+    align-self: stretch;
+  }
+
+  .app-row__actions .btn {
+    width: 100%;
+  }
+}

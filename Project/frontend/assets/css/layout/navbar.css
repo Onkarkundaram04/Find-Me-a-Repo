@@ -1,0 +1,350 @@
+/* ==========================================================================
+   layout/navbar.css
+   Sticky top bar, laid out as:
+
+     [ mark  Find Me a Repo ] | [ Projects  Dashboard  Profile ] ... [ ☾ ] [ avatar ▾ ]
+
+   Links are pills, not underlines — an underline under a 64px bar reads as a
+   tab strip, which is not what this is. Below 720px the same <nav> becomes a
+   panel under the bar, opened by the hamburger.
+   ========================================================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-h);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.16s ease;
+}
+
+/* Once the page scrolls, the hairline gains a soft shadow so content passing
+   underneath is clearly separated from the chrome. */
+.navbar.is-scrolled {
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+
+/* ---- Brand ---- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+/* The app icon. If the file is missing, navbar.js swaps in .brand__mark. */
+.brand__logo {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  object-fit: contain;
+  /* The cat is near-black, so it needs a plate to sit on — otherwise it
+     disappears into the dark theme, exactly like an app-icon tile */
+  background: var(--on-primary);
+}
+
+/* Hairline between brand and links — the visual "section break" used by
+   Stripe and Linear to stop the bar reading as one long row. */
+.navbar__rule {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  flex-shrink: 0;
+  margin-inline: calc(var(--s-1) * -1);
+}
+
+
+/* ---- Links ---- */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding-inline: 10px;
+  border-radius: var(--r);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.nav-link:hover {
+  background: var(--surface-alt);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-link.is-active {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.nav-link.is-active:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+
+/* ---- Right side ---- */
+
+.navbar__right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+  flex-shrink: 0;
+}
+
+/* The icon buttons sit at 32px to line up with the link pills */
+.navbar .btn--icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r);
+}
+
+
+/* ---- Theme toggle ----
+   Both icons are in the DOM; the active theme decides which is visible.
+   The click itself is handled by core/theme.js (delegated). */
+
+.theme-toggle svg {
+  pointer-events: none;
+}
+
+.theme-icon--sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-icon--sun {
+  display: block;
+}
+
+[data-theme="dark"] .theme-icon--moon {
+  display: none;
+}
+
+
+/* ---- Account menu ---- */
+
+.nav-user {
+  position: relative;
+}
+
+.nav-user__trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 5px 0 3px;
+  border: 1px solid transparent;
+  border-radius: var(--r-full);
+  background: transparent;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.nav-user__trigger:hover {
+  background: var(--surface-alt);
+}
+
+.nav-user__trigger[aria-expanded="true"] {
+  background: var(--surface-alt);
+  border-color: var(--border);
+}
+
+/* Small chevron that says "this opens something" */
+.nav-user__chevron {
+  color: var(--muted);
+  transition: transform 0.16s ease;
+}
+
+.nav-user__trigger[aria-expanded="true"] .nav-user__chevron {
+  transform: rotate(180deg);
+}
+
+.nav-user__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 210px;
+  padding: var(--s-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-lg);
+  z-index: 60;
+}
+
+.nav-user__menu[hidden] {
+  display: none;
+}
+
+.nav-user__head {
+  padding: var(--s-2) var(--s-3);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--s-2);
+}
+
+.nav-user__name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.nav-user__email {
+  font-size: var(--text-xs);
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-user__item {
+  display: block;
+  width: 100%;
+  padding: var(--s-2) var(--s-3);
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  text-align: left;
+  font-size: var(--text-sm);
+  color: var(--text-2);
+}
+
+.nav-user__item:hover {
+  background: var(--surface-alt);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-user__item--danger {
+  color: var(--danger-text);
+}
+
+.nav-user__item--danger:hover {
+  background: var(--danger-bg);
+}
+
+
+/* ---- Hamburger (hidden on desktop) ---- */
+
+.nav-burger {
+  display: none;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: transparent;
+  color: var(--text-2);
+}
+
+.nav-burger:hover {
+  background: var(--surface-alt);
+}
+
+.nav-burger svg {
+  pointer-events: none;
+}
+
+
+/* ==========================================================================
+   Under 720px: links become a panel under the bar
+   ========================================================================== */
+
+@media (max-width: 720px) {
+
+  .navbar__inner {
+    gap: var(--s-3);
+  }
+
+  /* The product name is longer than a phone can always fit next to the
+     controls, so it shrinks and truncates rather than pushing them off-screen */
+  .brand {
+    min-width: 0;
+    font-size: 13px;
+  }
+
+  .brand__word {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .navbar__rule {
+    display: none;
+  }
+
+  .nav-burger {
+    display: grid;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: var(--s-2);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: none;
+  }
+
+  .navbar.is-open .nav-links {
+    display: flex;
+  }
+
+  .nav-link {
+    height: 40px;
+    padding-inline: var(--s-3);
+    border-radius: var(--r-sm);
+  }
+
+  /* The avatar keeps its chevron, but the menu fills the width */
+  .nav-user__menu {
+    min-width: 200px;
+  }
+}

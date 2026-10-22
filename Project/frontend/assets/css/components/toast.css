@@ -1,0 +1,94 @@
+/* ==========================================================================
+   components/toast.css
+   Bottom-right stack. ui/toast.js creates the container once and appends here.
+   ========================================================================== */
+
+.toasts {
+  position: fixed;
+  right: var(--s-5);
+  bottom: var(--s-5);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  max-width: 360px;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--text-sm);
+  color: var(--text-2);
+  animation: toast-in 0.16s ease-out;
+}
+
+.toast--success {
+  border-left-color: var(--ok-text);
+}
+
+.toast--error {
+  border-left-color: var(--danger);
+}
+
+.toast--warn {
+  border-left-color: var(--warn-text);
+}
+
+/* Optional bold first line, then the detail underneath */
+.toast__title {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.toast__body {
+  margin-top: 2px;
+}
+
+.toast__close {
+  margin-left: auto;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  line-height: 1;
+  font-size: var(--text-md);
+}
+
+.toast__close:hover {
+  color: var(--text);
+}
+
+/* Leaving state, set by JS before removing the node */
+.toast.is-leaving {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* Phone: full width along the bottom */
+@media (max-width: 640px) {
+  .toasts {
+    left: var(--s-4);
+    right: var(--s-4);
+    max-width: none;
+  }
+}

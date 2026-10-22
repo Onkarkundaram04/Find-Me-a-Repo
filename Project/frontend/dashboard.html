@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Classic script on purpose: sets data-theme before the first paint -->
+  <script src="assets/js/core/theme.js"></script>
+  <title>Dashboard · Find Me a Repo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/coding_cat.png">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container">
+
+      <header class="page-head">
+        <div class="page-head__text">
+          <div class="eyebrow">// Workspace</div>
+          <h1>Dashboard</h1>
+          <p>Your projects and the applications you have sent.</p>
+        </div>
+
+        <div class="page-head__actions">
+          <a class="btn btn--primary" href="project-form.html">New project</a>
+        </div>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="Dashboard sections">
+        <button class="tab is-active" type="button" role="tab" data-tab="projects"
+                id="tab-projects" aria-selected="true" aria-controls="panel-projects">
+          My projects <span class="tab__count" id="projects-count" hidden></span>
+        </button>
+        <button class="tab" type="button" role="tab" data-tab="applications"
+                id="tab-applications" aria-selected="false" aria-controls="panel-applications">
+          My applications <span class="tab__count" id="apps-count" hidden></span>
+        </button>
+      </div>
+
+      <!-- Tab 1: projects I own -->
+      <section class="tab-panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects">
+        <div class="grid grid--cards" id="projects-list" aria-live="polite"></div>
+        <div id="projects-pagination"></div>
+      </section>
+
+      <!-- Tab 2: applications I sent -->
+      <section class="tab-panel" id="panel-applications" role="tabpanel" aria-labelledby="tab-applications" hidden>
+        <div class="toolbar">
+          <div class="filter-group" id="app-status-filters" role="group"
+               aria-label="Filter applications by status"></div>
+        </div>
+
+        <div class="stack" id="apps-list" aria-live="polite"></div>
+        <div id="apps-pagination"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script type="module" src="assets/js/pages/dashboard.js"></script>
+</body>
+</html>

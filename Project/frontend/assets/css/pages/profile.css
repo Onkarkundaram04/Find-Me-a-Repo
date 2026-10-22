@@ -1,0 +1,182 @@
+/* ==========================================================================
+   pages/profile.css
+   Three stacked setting cards. Fields, rules and buttons are all components —
+   this file only handles the page column and the danger rows.
+   ========================================================================== */
+
+.settings {
+  max-width: 860px;
+  padding-bottom: var(--s-7);
+}
+
+.settings__stack {
+  gap: var(--s-5);
+}
+
+/* Section headings inside a card sit tighter than a page heading */
+.settings .card__head {
+  margin-bottom: var(--s-4);
+}
+
+/* Actions inside a settings card are left-aligned, with no top divider */
+.form-actions--left {
+  justify-content: flex-start;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* ---- Account card: who you are, and what you have done ---- */
+
+.account-card {
+  padding: var(--s-5);
+}
+
+.account-card__id {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.account-card__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-card__name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.account-card__email {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.account-card__badges {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+
+.account-card__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-5);
+  /* Reserved so the card does not jump when the counts arrive */
+  min-height: 24px;
+}
+
+.account-stat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+}
+
+.account-stat + .account-stat {
+  padding-left: var(--s-5);
+  border-left: 1px solid var(--border);
+}
+
+.account-stat__value {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* A date is not a count, so it should not shout like one */
+.account-stat__value--sm {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.account-stat__label {
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+
+/* ---- Live preview inside the profile card ---- */
+
+.profile-preview {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r);
+  background: var(--bg);
+}
+
+.profile-preview__name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.profile-preview__hint {
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+
+/* ---- Danger zone rows ---- */
+.danger-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-5);
+}
+
+.danger-row p {
+  max-width: 46ch;
+  margin-top: var(--s-1);
+}
+
+.danger-row .btn {
+  flex-shrink: 0;
+}
+
+
+/* ---- Phone ---- */
+
+@media (max-width: 640px) {
+
+  .account-card__id {
+    flex-wrap: wrap;
+  }
+
+  .account-card__badges {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .account-card__stats {
+    gap: var(--s-4);
+  }
+
+  .account-stat + .account-stat {
+    padding-left: var(--s-4);
+  }
+
+  .danger-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-3);
+  }
+
+  .danger-row .btn {
+    width: 100%;
+  }
+
+  .settings .field-row {
+    grid-template-columns: 1fr;
+  }
+}

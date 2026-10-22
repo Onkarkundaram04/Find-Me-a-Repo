@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Classic script on purpose: sets data-theme before the first paint -->
+  <script src="assets/js/core/theme.js"></script>
+  <title>New project · Find Me a Repo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/coding_cat.png">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container form-page">
+
+      <a class="back-link mono-text xs muted" href="dashboard.html">← Dashboard</a>
+
+      <header class="page-head">
+        <div class="page-head__text">
+          <div class="eyebrow" id="eyebrow">// New project</div>
+          <h1 id="page-title">Post a project</h1>
+          <p id="page-lead">Describe what you are building and what kind of help you need.</p>
+        </div>
+      </header>
+
+      <form id="project-form" class="card card--padded-lg stack" novalidate>
+
+        <div class="form-error" id="form-error" role="alert" hidden></div>
+
+        <label class="field">
+          <span class="field__label">Title <span class="req">*</span></span>
+          <input class="input" id="title" type="text" maxlength="500"
+                 placeholder="Supabase Auth Visualizer" required aria-describedby="title-error">
+          <span class="field__hint">
+            <span id="title-count">0</span> / 500
+          </span>
+          <span class="field__error" id="title-error"></span>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Description <span class="req">*</span></span>
+          <textarea class="textarea" id="description" rows="8" maxlength="10000"
+                    placeholder="What does the project do, what state is it in, and what are you looking for?"
+                    required aria-describedby="description-error"></textarea>
+          <span class="field__hint">
+            <span id="desc-count">0</span> / 10000 — markdown is not rendered, plain text only
+          </span>
+          <span class="field__error" id="description-error"></span>
+        </label>
+
+        <label class="field">
+          <span class="field__label">GitHub repository <span class="req">*</span></span>
+          <input class="input" id="githubUrl" type="url"
+                 placeholder="https://github.com/alex/portfolio-api" required
+                 aria-describedby="githubUrl-error">
+          <span class="field__hint">Full repository URL, not your profile.</span>
+          <span class="field__error" id="githubUrl-error"></span>
+        </label>
+
+        <!-- Tech stack: chips added with Enter, comma or the Add button -->
+        <div class="field">
+          <span class="field__label" id="tags-label">
+            Tech stack <span class="req">*</span>
+          </span>
+
+          <div class="tag-input" id="tag-input">
+            <input class="tag-input__field" id="tag-field" type="text"
+                   placeholder="add a technology and press Enter"
+                   aria-labelledby="tags-label" aria-describedby="techStack-error"
+                   autocomplete="off" spellcheck="false">
+          </div>
+
+          <span class="field__hint">
+            <span id="tag-count">0</span> / 20 — stored lowercase, duplicates ignored
+          </span>
+          <span class="field__error" id="techStack-error"></span>
+        </div>
+
+        <!-- Status only exists on an existing project; new ones start OPEN -->
+        <label class="field" id="status-field" hidden>
+          <span class="field__label">Status</span>
+          <select class="select" id="status">
+            <option value="OPEN">OPEN — accepting applications</option>
+            <option value="CLOSED">CLOSED — no longer accepting</option>
+          </select>
+          <span class="field__hint">Closing a project stops new applications; existing ones stay.</span>
+        </label>
+
+        <div class="form-actions">
+          <a class="btn btn--secondary" href="dashboard.html" id="cancel">Cancel</a>
+          <button class="btn btn--primary" id="submit" type="submit">Create project</button>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script type="module" src="assets/js/pages/project-form.js"></script>
+</body>
+</html>

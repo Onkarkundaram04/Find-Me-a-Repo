@@ -1,0 +1,44 @@
+/* ==========================================================================
+   components/empty.css
+   Shown when a list succeeds but returns zero rows — never as an error.
+   ========================================================================== */
+
+.empty {
+  display: grid;
+  place-items: center;
+  gap: var(--s-2);
+  padding: var(--s-7) var(--s-5);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  text-align: center;
+}
+
+.empty__title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.empty__text {
+  color: var(--muted);
+  max-width: 380px;
+}
+
+.empty__actions {
+  margin-top: var(--s-3);
+}
+
+/* Compact version inside a card or a table cell */
+.empty--inline {
+  padding: var(--s-5);
+  border-style: solid;
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+/* An empty state inside a card grid spans the whole row instead of sitting in
+   one 320px column with dead space beside it. */
+.grid > .empty {
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,75 @@
+/* ==========================================================================
+   base/typography.css
+   Headings, links, code and the mono eyebrow used above page titles.
+   Anything that styles a specific component lives in components/.
+   ========================================================================== */
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+h1 { font-size: var(--text-3xl); font-weight: 700; letter-spacing: -0.025em; }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); }
+h4 { font-size: var(--text-md); }
+
+p {
+  color: var(--text-2);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Links inside body copy should read as text, not as a button */
+p a {
+  font-weight: 500;
+}
+
+code,
+pre,
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+code {
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface-alt);
+  color: var(--text-2);
+}
+
+pre {
+  padding: var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface-alt);
+  overflow-x: auto;
+}
+
+pre code {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+/* The "// DISCOVERY_PORTAL" label that sits above every page title */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: var(--s-2);
+}

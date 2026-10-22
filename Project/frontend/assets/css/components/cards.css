@@ -1,0 +1,169 @@
+/* ==========================================================================
+   components/cards.css
+   .card        generic panel (forms, settings sections, detail sidebar)
+   .project-card the browse-grid card with a fixed internal rhythm
+   .stat        admin counter card
+   ========================================================================== */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--s-5);
+}
+
+.card--flat {
+  box-shadow: none;
+}
+
+.card--padded-lg {
+  padding: var(--s-6);
+}
+
+.card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+}
+
+.card__title {
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.card__sub {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin-top: var(--s-1);
+}
+
+/* Danger zone wrapper on the profile page */
+.card--danger {
+  border-color: var(--danger-border);
+}
+
+.card--danger .card__title {
+  color: var(--danger-text);
+}
+
+
+/* ---- Project card ---- */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--s-5);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.project-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+
+.project-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.project-card__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  font-size: var(--text-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.project-card__title:hover {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* The two-line clamp itself comes from utils/utilities.css (.clamp-2).
+   Only the type and the reserved height belong to this component. */
+.project-card__desc {
+  color: var(--muted);
+  font-size: var(--text-base);
+  min-height: 42px;
+  /* A pasted URL must wrap instead of widening the card */
+  overflow-wrap: anywhere;
+}
+
+.project-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+}
+
+/* "Details →" link at the bottom of a card */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.link-arrow:hover {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.link-arrow::after {
+  content: "→";
+  transition: transform 0.12s ease;
+}
+
+.link-arrow:hover::after {
+  transform: translateX(2px);
+}
+
+
+/* ---- Stat card (admin) ---- */
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-4) var(--s-5);
+}
+
+.stat__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stat__value {
+  margin-top: var(--s-2);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.stat__note {
+  font-size: var(--text-xs);
+  color: var(--muted);
+}

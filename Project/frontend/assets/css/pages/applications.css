@@ -1,0 +1,102 @@
+/* ==========================================================================
+   pages/applications.css
+   The owner's review rows. Header, stats and filters all reuse existing
+   components — only the applicant card is new.
+   ========================================================================== */
+
+/* "Applications · <project name>" is a long heading, so it steps down one size
+   to stay proportionate to the counters sitting right below it */
+#page-title {
+  font-size: var(--text-2xl);
+  line-height: 1.25;
+}
+
+.app-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-5);
+  padding: var(--s-5);
+}
+
+.app-card__main {
+  min-width: 0;
+}
+
+.app-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+}
+
+/* The note is the point of this screen, so it gets full width and real leading */
+.app-card__note {
+  margin-top: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  border-left: 2px solid var(--border-strong);
+  border-radius: 0 var(--r) var(--r) 0;
+  background: var(--bg);
+  color: var(--text-2);
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.app-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.app-card__meta .dot {
+  color: var(--border-strong);
+}
+
+.app-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-2);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  padding-top: 2px;
+}
+
+/* Keep the list from collapsing while loading */
+#list {
+  min-height: 160px;
+}
+
+/* The counters and the filter row were touching: one gap, set here */
+#summary {
+  margin-bottom: var(--s-5);
+}
+
+/* One filter, so it can afford to look like a real control, not a chip */
+#status-filters .select {
+  min-width: 190px;
+  height: 38px;
+  font-size: var(--text-base);
+}
+
+
+/* ---- Phone: actions wrap under the note ---- */
+
+@media (max-width: 720px) {
+
+  .app-card {
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .app-card__actions {
+    align-self: stretch;
+    justify-content: flex-end;
+  }
+
+  .app-card__actions .btn {
+    flex: 1;
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Classic script on purpose: sets data-theme before the first paint -->
+  <script src="assets/js/core/theme.js"></script>
+  <title>Admin · Find Me a Repo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/coding_cat.png">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container">
+
+      <header class="page-head">
+        <div class="page-head__text">
+          <div class="eyebrow">// Admin</div>
+          <h1>Platform control</h1>
+          <p>Users, projects and the numbers behind them.</p>
+        </div>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="Admin sections">
+        <button class="tab is-active" type="button" role="tab" data-tab="overview"
+                id="tab-overview" aria-selected="true" aria-controls="panel-overview">Overview</button>
+        <button class="tab" type="button" role="tab" data-tab="users"
+                id="tab-users" aria-selected="false" aria-controls="panel-users">Users</button>
+        <button class="tab" type="button" role="tab" data-tab="projects"
+                id="tab-projects" aria-selected="false" aria-controls="panel-projects">Projects</button>
+      </div>
+
+      <!-- Overview: three headline numbers, then how each set breaks down -->
+      <section class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
+        <div class="overview">
+          <div class="overview__kpis" id="overview-kpis" aria-live="polite"></div>
+          <div class="overview__breakdowns" id="overview-breakdowns"></div>
+        </div>
+      </section>
+
+      <!-- Users -->
+      <section class="tab-panel" id="panel-users" role="tabpanel" aria-labelledby="tab-users" hidden>
+        <div class="toolbar">
+          <div class="filter-group" id="user-role-filters" role="group" aria-label="Filter by role"></div>
+          <div class="toolbar__spacer"></div>
+          <div class="filter-group" id="user-status-filters" role="group" aria-label="Filter by status"></div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Projects</th>
+                <th>Applications</th>
+                <th class="actions">Manage</th>
+              </tr>
+            </thead>
+            <tbody id="users-body"></tbody>
+          </table>
+        </div>
+
+        <div id="users-pagination"></div>
+      </section>
+
+      <!-- Projects -->
+      <section class="tab-panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" hidden>
+        <div class="toolbar">
+          <div class="filter-group" id="project-status-filters" role="group" aria-label="Filter by status"></div>
+          <div class="toolbar__spacer"></div>
+          <!-- Project list comes from the public /api/search endpoint: there is
+               no admin-wide project list route. Delete still uses the admin one. -->
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Applicants</th>
+                <th>Created</th>
+                <th class="actions">Manage</th>
+              </tr>
+            </thead>
+            <tbody id="projects-body"></tbody>
+          </table>
+        </div>
+
+        <div id="projects-pagination"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script type="module" src="assets/js/pages/admin.js"></script>
+</body>
+</html>

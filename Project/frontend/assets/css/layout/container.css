@@ -1,0 +1,181 @@
+/* ==========================================================================
+   layout/container.css
+   Page skeleton: the max-width container, the page header, the grids, and the
+   toolbar that sits above every list. No colours beyond tokens, no components.
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--s-6);
+}
+
+.section {
+  padding-block: var(--s-6);
+}
+
+
+/* ---- Skip link ----
+   Off-screen until it takes focus, then drops in under the navbar. */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: var(--s-2) var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--r) 0;
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow);
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+
+/* ---- Page header: eyebrow + title + line, actions on the right ---- */
+
+.page-head {
+  display: flex;
+  /* Top-aligned: with a long project name the title wraps, and bottom-aligned
+     actions then float down beside the paragraph instead of the heading */
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-6);
+  padding-block: var(--s-6) var(--s-5);
+}
+
+.page-head__text {
+  max-width: 640px;
+}
+
+.page-head h1 {
+  letter-spacing: -0.025em;
+  /* Splits a two-line heading evenly instead of leaving one long line */
+  text-wrap: balance;
+}
+
+.page-head p {
+  margin-top: var(--s-2);
+  color: var(--muted);
+  font-size: var(--text-md);
+}
+
+.page-head__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex-shrink: 0;
+}
+
+
+/* ---- Back link: the "← All projects" line above a page ----
+   Lives here (not in a page file) because project, project-form and
+   applications all use it. */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  margin-top: var(--s-5);
+  color: var(--muted);
+}
+
+.back-link:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+
+/* ---- Grids ---- */
+
+.grid {
+  display: grid;
+  gap: var(--s-5);
+}
+
+/* The project browse grid: auto-fits as many 320px cards as the width allows */
+.grid--cards {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid--stats {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Content + sidebar (project detail, profile) */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: var(--s-5);
+  align-items: start;
+}
+
+
+/* ---- Stacks and rows ---- */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.stack--tight {
+  gap: var(--s-2);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.row--between {
+  justify-content: space-between;
+}
+
+.row--wrap {
+  flex-wrap: wrap;
+}
+
+
+/* ---- Toolbar above lists: search on the left, filters right ---- */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-5);
+}
+
+.toolbar__spacer {
+  flex: 1;
+}
+
+/* A labelled filter cluster: "STACK: [all] [react] [go]" */
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+
+.filter-group__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: var(--s-1);
+}

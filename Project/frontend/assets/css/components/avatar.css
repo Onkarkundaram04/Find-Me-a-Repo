@@ -1,0 +1,93 @@
+/* ==========================================================================
+   components/avatar.css
+   Initials circles only — the design forbids photo avatars.
+   The text is generated in JS from the user's name (first two letters).
+   ========================================================================== */
+
+.avatar {
+  display: grid;
+  /* place-content centres the (auto) row inside the box; place-items centres
+     the text inside that row. With only place-items, a row that does not
+     stretch leaves the letters pinned to the top — which is exactly what was
+     happening on the navbar avatar. */
+  place-content: center;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  /* Deterministic line box: no inherited 1.5 leading to centre inside. */
+  line-height: 1;
+  border-radius: var(--r-full);
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.avatar--lg {
+  width: 40px;
+  height: 40px;
+  font-size: var(--text-sm);
+}
+
+/* The account card on Settings */
+.avatar--xl {
+  width: 52px;
+  height: 52px;
+  font-size: var(--text-md);
+  border-radius: var(--r-lg);
+}
+
+/* Indigo variant for the current user in the navbar */
+.avatar--accent {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+
+/* ---- Owner block: avatar + name over a meta line ---- */
+
+.owner {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-width: 0;
+}
+
+.owner__name {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.owner__meta {
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+/* Applicant row on the applications screen */
+.person {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-width: 0;
+}
+
+.person__name {
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--text);
+}
+
+.person__sub {
+  font-size: var(--text-xs);
+  color: var(--muted);
+}

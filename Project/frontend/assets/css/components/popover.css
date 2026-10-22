@@ -1,0 +1,116 @@
+/* ==========================================================================
+   components/popover.css
+   An anchored panel under a button. On a phone it becomes a bottom sheet —
+   same markup, different frame — because a 320px panel floating off the right
+   edge of a 360px screen has nowhere to go.
+   ========================================================================== */
+
+.popover {
+  position: relative;
+  display: inline-flex;
+}
+
+.popover__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 70;
+  width: 300px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.popover__panel[hidden] {
+  display: none;
+}
+
+.popover__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-3);
+}
+
+.popover__title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+
+/* ---- Checkbox rows inside a popover ---- */
+
+.filter-list {
+  display: grid;
+  gap: 1px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 6px var(--s-2);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: var(--text-2);
+}
+
+.filter-option:hover {
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.filter-option input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.filter-option__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+}
+
+.filter-option__count {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+
+/* ---- Phone: bottom sheet ---- */
+
+@media (max-width: 640px) {
+
+  .popover {
+    position: static;
+  }
+
+  .popover__panel {
+    position: fixed;
+    inset: auto 0 0 0;
+    width: auto;
+    max-height: 72vh;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    border-bottom: 0;
+    padding-bottom: var(--s-5);
+  }
+}

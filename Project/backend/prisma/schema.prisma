@@ -1,0 +1,149 @@
+// ============================================================
+// START HERE — how the three models connect
+// ============================================================
+//
+//   User    ── owns ──────> Project      (Project.ownerId         -> User.id)
+//   User    ── applies ───> Application  (Application.userId     -> User.id)
+//   Project ── receives ──> Application  (Application.projectId  -> Project.id)
+//
+// In plain words:
+//   - a User creates many Projects
+//   - a User sends many Applications
+//   - an Application belongs to exactly ONE project AND ONE user
+//
+// Application is the bridge between the other two models. That is why it
+// carries TWO foreign keys (userId and projectId) while Project carries one.
+//
+// One user, one project, one application:
+//   @@unique([userId, projectId])
+//   This is the line that makes "already applied" possible. The controller's
+//   duplicate pre-check and the P2002 catch both depend on it.
+//
+// onDelete: Cascade (both relations):
+//   - delete a User    -> their projects and their applications disappear
+//   - delete a Project -> every application sent to it disappears
+//   Nothing is left pointing at a row that no longer exists.
+//
+// Every id is String @default(uuid()), which is why controllers validate
+// :id with UUID_REGEX before touching the database.
+//
+// techStack is String[] — a real Postgres array column, not JSON text.
+// ============================================================
+
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Sample Database Testing
+
+/**
+ * model Test {
+ * id        Int      @id @default(autoincrement())
+ * message   String
+ * createdAt DateTime @default(now())
+ * }
+ */
+
+// ----------------------------------------------- ENUMS ----------------------------------------------- //
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  DEACTIVATED
+}
+
+enum ProjectStatus {
+  OPEN
+  CLOSED
+}
+
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+// ----------------------------------------------- MODELS ----------------------------------------------- //
+
+model User {
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  status    UserStatus @default(ACTIVE)
+  password  String
+  role      Role       @default(USER)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // Relations
+  // --- Virtual Relation Fields (Not stored in PostgreSQL) ---
+  // Enables Prisma queries like: prisma.user.findUnique({ include: { projects: true } })
+  projects     Project[] // One user can create multiple projects (1-to-Many)
+  applications Application[] // One user can submit multiple applications (1-to-Many)
+}
+
+// -------------------------------------------------------------------------------------------------------------------------- //
+
+model Project {
+  id          String        @id @default(uuid())
+  title       String
+  description String
+  githubUrl   String
+  techStack   String[]
+  status      ProjectStatus @default(OPEN)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Owner Relation (Cascade delete if user is removed)
+
+  // --- Owner Relation ---
+
+  ownerId String // Real DB column: Stores the creator's user UUID
+
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  // Links ownerId -> User.id. onDelete: Cascade = deleting a user deletes all their created projects
+
+  applications Application[]
+}
+
+// -------------------------------------------------------------------------------------------------------------------------- //
+
+model Application {
+  id            String            @id @default(uuid())
+  note          String
+  githubProfile String
+  status        ApplicationStatus @default(PENDING)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  // Relations (Cascade delete if project is deleted)
+
+  // --- Applicant Relation ---
+  userId String // Real DB column: Stores the applicant's UUID
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // Links userId -> User.id. Deleting a user deletes their applications
+
+  // --- Target Project Relation ---
+  projectId String // Real DB column: Stores the project's UUID being applied to
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  // Links projectId -> Project.id. Deleting a project deletes all applications submitted to it
+
+  // Enforce 1 application per user per project
+  @@unique([userId, projectId])
+}
