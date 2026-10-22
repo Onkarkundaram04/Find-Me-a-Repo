@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="Assets/coding_cat.png" width="84" alt="" />
+  <img src="Assets/coding_cat_white_bg_rounded.png" width="84" alt="" />
   <h1>Find Me a Repo</h1>
   <p><strong>Post the repository you are building. Meet the people who want to work on it.</strong></p>
   <p>
